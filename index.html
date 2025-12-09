@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farina Ristorante</title>
+    <style>
+        /* ========== FONTES ========== */
+        @font-face {
+            font-family: "lalezar";
+            src: url("/src/assets/font/Lalezar/Lalezar-Regular.ttf") format('truetype');
+        }
+        @font-face {
+            font-family: "lateef";
+            src: url("/src/assets/font/Lateef/Lateef-Regular.ttf") format('truetype');
+        }
+        @font-face {
+            font-family: "libre bodoni";
+            src: url("/src/assets/font/Libre_Bodoni/LibreBodoni-Regular.ttf") format('truetype');
+        }
+
+        /* ========== VARIÁVEIS GLOBAIS ========== */
+        :root {
+            --destaque: "lalezar";
+            --texto: "lateef";
+            --titulos: "libre bodoni";
+            --cor-principal: #FFF;
+            --cor-secundaria: #005926;
+            --cor-destaque: #C8102E;
+        }
+
+        /* ========== RESET ========== */
+        * {
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        a {
+            text-decoration: none;
+        }
+
+        /* ========== NAVEGAÇÃO ========== */
+        @keyframes mudar-bg {
+            0% { background-color: var(--cor-principal); }
+            100% { background-color: #e6e6e6; }
+        }
+        nav {
+            border: 1px solid var(--cor-secundaria);
+            width: 100%;
+            height: 90px;
+            display: flex;
+            align-items: center;
+        }
+        a.item-nav, a.item-nav > p {
+            color: var(--cor-secundaria);
+        }
+        a#img {
+            margin: 0 49% 0 3%;
+            padding: 7px;
+            height: 100%;
+        }
+        img#img-nav {
+            height: 95%;   
+        }
+        div.elementos-nav {
+            height: 100%;
+            width: 13%;
+            border-left: 1px solid var(--cor-secundaria);
+            border-right: 1px solid var(--cor-secundaria);
+            padding: 10px;
+            text-align: center;
+            align-content: center;
+            font-size: 1.5em;
+        }
+        div.elementos-nav:hover {
+            animation: mudar-bg 1s ease-out 0.1s 1 normal forwards;
+        }
+        .elementos-nav p {
+            font-family: var(--titulos);
+        }
+
+        /* ========== HEADERS COMUNS ========== */
+        header {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            justify-content: center;
+        }
+        h1 {
+            font-family: var(--titulos);
+            color: var(--cor-principal);
+            font-size: clamp(4rem, 10vw, 15rem);
+            line-height: 1.1;
+            font-weight: normal;
+        }
+
+        /* ========== SEÇÃO HOME ========== */
+        #home-header {
+            background: url(/src/assets/img/comidas-fundo.png) no-repeat center center fixed;
+            background-size: cover;
+            align-items: center;
+        }
+        #home-header > p, #home-header h1, #home-header a {
+            color: var(--cor-principal);
+        }
+        #home-header h1 {
+            margin-top: 4%;
+            margin-bottom: 5%;
+        }
+        p#paragrafo-header {
+            font-family: var(--texto);
+            font-size: 1.5em;
+            width: 54%;
+        }
+        a.btn-destaque {
+            margin: 5% 0;
+            padding: 20px 35px;
+            background-color: var(--cor-destaque);
+            font-family: var(--destaque);
+            font-size: 2em;
+            text-align: center;
+            color: var(--cor-principal);
+        }
+        #div-section-text a.btn-destaque {
+            width: 35%;
+            margin-top: 6%;
+        }
+        #section-home, .div-section {
+            display: flex;
+        }
+        .div-section {
+            flex-direction: column;
+        }
+        .div-section img {
+            height: 100%;
+        }
+        #div-section-text {
+            width: 60%;
+            padding: 3.5%;
+            color: var(--cor-secundaria);
+        }
+        #section-home h2 {
+            font-size: 6.5em;
+        }
+        #div-section-text p {
+            margin-top: 10px;
+            font-size: 1.3em;
+        }
+        #div-section-img {
+            width: 40%;
+        }
+        #img-cozinheiro-extended {
+            display: none;
+        }
+
+        /* ========== SEÇÃO SOBRE NÓS ========== */
+        #sobre-header {
+            height: 70vh;
+            background: url(/src/assets/img/bg-sobrenós.png) no-repeat center center fixed;
+            background-size: cover;
+            background-color: rgba(0, 0, 0, 0.4);
+            background-blend-mode: darken;
+        }
+        .caixa-texto-sobrenós {
+            font-family: var(--titulos);
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: justify;
+            line-height: 1.6;
+            margin-top: 9%;
+            margin-bottom: 10%;
+        }
+        .caixa-texto-sobrenós .texto {
+            margin: 0 auto;
+            width: 85%;
+            display: block;
+            font-weight: 600;
+            font-size: clamp(0.9rem, 0.5rem + 1vw, 2rem);
+            margin-bottom: 40px;
+            color: #005926;
+        }
+        .caixa-foto {
+            width: 100%;
+            display: flex;   
+            justify-content: center;
+            margin: 140px 0px;
+        }
+        .foto-taylor img {
+            max-width: 1200px;
+            min-width: 300px;
+            width: 100%;
+            height: auto;
+        }
+
+        /* ========== SEÇÃO CARDÁPIO ========== */
+        #cardapio-header {
+            min-height: 70vh; 
+            background: url(/src/assets/img/bg-cardápio.png) no-repeat center center fixed;
+            background-size: cover;
+            background-color: rgba(0, 0, 0, 0.4);
+            background-blend-mode: darken;
+        }
+        .container-principal {
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 15px;
+            width: 100%;
+        }
+        .secao-navegacao {
+            width: 100%;
+            margin: 0 auto;
+            margin-bottom: 40px; 
+        }
+        .botões-cardápio {
+            font-family: var(--titulos);
+            margin: 0 auto;
+            padding: 100px 0 40px 0; 
+            width: 100%;
+            text-align: left;
+        }
+        .botões-cardápio h3 {
+            padding-bottom: 40px;
+            font-size: 28px;
+            color: #005926;
+            font-weight: 500;
+        }
+        .botões-cardápio a {
+            border: 1px solid;
+            padding: 30px 50px 30px 20px;
+            cursor: pointer;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .botões-cardápio .cardápio {
+            background-color: #C8102E;
+            border-radius: 10px;
+            color: var(--cor-principal);
+            font-weight: 500;
+            font-size: 24px;
+            border-color: #C8102E;
+        }
+        .pasta {
+            color: black;
+            text-decoration: none;
+        }
+        .botões-cardápio .promoção {
+            color: var(--cor-principal);
+            font-size: 24px;
+            font-weight: 500;
+            border-radius: 10px;
+            background: linear-gradient(to right, #615E5E, #C1C0C0);
+        }
+        .botões-categorias {
+            display: flex;
+            width: 100%;
+            padding: 0; 
+        }
+        .botões-categorias a {
+            flex: 1; 
+            max-width: 220px;
+            font-family: var(--titulos);
+            padding: 30px 40px 20px 20px;
+            border: 1px solid;
+            cursor: pointer;
+            border-color: #8D8686;
+            font-size: 20px;
+            text-align: center;
+        }
+        .secao-prato {
+            width: 100%;
+            margin: 40px auto; 
+            max-width: 1200px;
+        }
+        .cabecalho-faixa-cinza {
+            width: 100%;
+            background-color: #F3F3F3; 
+            padding: 16px 16px 40px 16px; 
+            margin-bottom: 0; 
+        }
+        .cabecalho-faixa-cinza .texto { 
+            padding-top: 1px;
+            text-align: left;
+            font-size: 30px; 
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        .aba-Antipasti, .aba-Pasta, .aba-Dolci, .aba-dodia {
+            padding-top: 20px; 
+            margin: 0 auto;
+            max-width: 100%;
+            background-color: #FFFFFF; 
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-bottom: 20px;
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 40px;
+        }
+        .item-menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #333333; 
+        }
+        .Polpettini {
+            padding-top: 20px;
+        }
+        .conteudo {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+            align-self: flex-start;
+        }
+        .conteudo h2 {
+            font-size: 30px;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.2;
+            padding-bottom: 15px;
+        }
+        .conteudo .descricao {
+            font-size: 20px;
+            padding-bottom: 15px;
+            line-height: 1.4;
+            color: #333;
+            margin: 0;
+        }
+        .conteudo .tag {
+            font-size: 14px;
+            margin: 4px 0;
+            padding-bottom: 30px;
+        }
+        .conteudo .preco,
+        .conteudo .preço {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0;
+            padding-top: 0 !important; 
+            margin-top: auto;
+        }
+        .aba-Antipasti img, .aba-Pasta img, .aba-Dolci img, .aba-dodia img {
+            border-radius: 10px;
+            width: 258px;
+            height: 238px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        /* ========== SEÇÃO EVENTOS ========== */
+        #eventos-header {
+            height: 70vh;
+            background: url(/src/assets/img/bg-eventos.png) no-repeat center center fixed;
+            background-size: cover;
+        }
+        #eventos-header h1 {
+            margin-top: 4%;
+            margin-bottom: 5%;
+        }
+        #section-eventos {
+            padding: 20px;
+            height: auto;
+        }
+        #div-limitadora-tamanho {
+            width: 80%;
+            height: 100%;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+        }
+        article.eventos {
+            width: 49%;
+            height: 49%;
+            margin: auto;
+            margin-bottom: 1%;
+        }
+        #article-aniversario,
+        #article-confraternizacao,
+        #article-casamento,
+        #article-evento-corporativo {
+            position: relative;
+        }
+        #article-aniversario img,
+        #article-confraternizacao img,
+        #article-casamento img,
+        #article-evento-corporativo img {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        #article-aniversario h2,
+        #article-confraternizacao h2,
+        #article-casamento h2,
+        #article-evento-corporativo h2 {
+            position: absolute;
+            top: 5%;
+            left: 2%;
+            font-size: clamp(1.4em, 3vw, 15rem);
+            color: var(--cor-principal);
+        }
+        .btn-orcamento {
+            position: absolute;
+            bottom: 10%;
+            left: 10%;
+            width: 48%;
+            height: 15%;
+            background-color: var(--cor-destaque);
+            color: white;
+            font-family: var(--destaque);
+            font-size: clamp(1em, 2.5vw, 15em);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            background-color: var(--cor-secundaria);
+            color: var(--cor-principal);
+            text-align: center;
+            font-family: var(--titulos);
+            padding: 15px;
+        }
+        #fixacao {
+            display: flex;
+            width: 90%;    
+            margin: auto;
+            padding: 20px;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .caixa-texto-footer {
+            padding: 20px;
+            flex: 1;
+        }
+        .linha {
+            width: 1px;
+            height: 184px;
+            background-color: var(--cor-principal);
+        }
+        .caixa-texto-footer .titulo {
+            font-size: 1.4em;
+        }
+        .caixa-texto-footer .texto {
+            margin-top: 10px;
+        }
+        #logo {
+            display: block;
+            max-width: 228px;
+            max-height: 210px;
+            margin: auto;
+        }
+        #redes-sociais {
+            display: flex;
+            margin: 15px auto;
+            width: 20vh;
+            justify-content: space-between;
+        }
+        #redes-sociais img {
+            width: 25px;
+            height: 25px;
+        }
+
+        /* ========== RESPONSIVO - NAVEGAÇÃO ========== */
+        @media (max-width: 1120px) {
+            nav {
+                flex-wrap: wrap;
+                flex-direction: column;
+                height: auto;
+            }
+            a#img, a#img > img {
+                margin: auto;
+            }
+            div.elementos-nav {
+                width: 100%;
+                border-left: none;
+                border-right: none;
+                border-top: 1px solid var(--cor-secundaria);
+            }
+        }
+
+        /* ========== RESPONSIVO - FOOTER ========== */
+        @media (max-width: 730px) {
+            .linha {
+                display: none; 
+            }
+            #fixacao {
+                flex-wrap: wrap;
+                flex-direction: column;
+            }
+            .caixa-texto-footer {
+                margin: auto;
+            }
+        }
+
+        /* ========== RESPONSIVO - HOME ========== */
+        @media (max-width: 695px) {
+            #home-header a.btn-destaque {
+                margin-top: 7%;
+                margin-bottom: 7%;
+            }
+            #div-section-text {
+                text-align: justify;
+            }
+            #div-section-text a.btn-destaque {
+                width: 73%;
+                margin-top: 8%;
+            }
+        }
+        @media (max-width: 1600px) {
+            #home-header a.btn-destaque {
+                margin-top: 5%;
+                margin-bottom: 5%;
+            }
+        }
+        @media (max-width: 1500px) {
+            #home-header h1 {
+                font-size: 3em;
+            }
+            #section-home {
+                flex-direction: column;
+            }
+            .div-section {
+                width: 100%;
+            }
+            #div-section-text, #div-section-img {
+                width: 100%;
+            }
+            #div-section-text {
+                text-align: center;
+            }
+            a.btn-destaque {
+                margin: auto;
+            }
+            #section-home h2 {
+                font-size: 3.5em; 
+                margin-bottom: 3%;
+            }
+            #img-cozinheiro {
+                display: none;
+            }
+            #img-cozinheiro-extended {
+                display: block;
+            }
+        }
+
+        /* ========== RESPONSIVO - CARDÁPIO ========== */
+        @media (max-width: 1120px) {
+            #cardapio-header {
+                min-height: 50vh;
+                background-attachment: scroll;
+                padding: 20px;
+            }
+            .botões-cardápio {
+                padding: 40px 20px;
+                text-align: center;
+            }
+            .botões-cardápio a {
+                display: block;
+                margin: 10px auto;
+                max-width: 350px;
+                padding: 20px;
+            }
+            .botões-categorias {
+                flex-wrap: wrap;
+                padding: 20px;
+                gap: 20px;
+            }
+            .botões-categorias a {
+                flex: 1 1 45%;
+                max-width: 100%;
+                padding: 20px;
+            }
+            .secao-prato {
+                max-width: 100%;
+                padding: 0;
+                margin: 40px auto;
+            }
+            .aba-Antipasti, .aba-Pasta, .aba-Dolci, .aba-dodia {
+                padding: 20px;
+            }
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .item-menu {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .aba-Antipasti img, .aba-Pasta img, .aba-Dolci img, .aba-dodia img {
+                width: 90%;
+                max-width: 400px;
+                height: auto;
+            }
+            .conteudo {
+                align-items: center;
+                text-align: center;
+            }
+            .conteudo .preco, .conteudo .preço {
+                padding-top: 10px !important; 
+            }
+        }
+        @media (max-width: 760px) {
+            #cardapio-header {
+                min-height: 40vh;
+            }
+            .botões-cardápio {
+                padding: 20px;
+            }
+            .botões-cardápio a {
+                max-width: 100%;
+                padding: 18px;
+                font-size: 20px;
+            }
+            .botões-categorias {
+                gap: 10px;
+            }
+            .botões-categorias a {
+                flex: 1 1 100%;
+                font-size: 18px;
+                padding: 15px;
+            }
+            .conteudo h2 {
+                font-size: 22px;
+            }
+            .conteudo .descricao {
+                font-size: 16px;
+            }
+            .aba-Antipasti img, .aba-Pasta img, .aba-Dolci img, .aba-dodia img {
+                width: 100%;
+            }
+        }
+
+        /* ========== RESPONSIVO - EVENTOS ========== */
+        @media (max-width: 730px) {
+            #section-eventos {
+                height: auto;
+            }
+            #div-limitadora-tamanho {
+                flex-direction: column;
+                flex-wrap: nowrap;
+            }
+            article.eventos {
+                width: 75%;
+                height: 75%;
+            }
+        }
+
+        .div-divisao-sections {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--cor-secundaria);
+            text-align: center;
+            color: var(--cor-principal);
+            font-family: var(--titulos);
+            font-size: 1.7rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVEGAÇÃO -->
+    <nav>
+        <a id="img" href="#home">
+            <img id="img-nav" src="./src/assets/img/logo-sem-bg-verde.png" alt="Logo">
+        </a>
+        <div class="elementos-nav">
+            <a class="item-nav" href="#cardapio">
+                <p>CARDÁPIO</p>
+            </a>
+        </div>
+        <div class="elementos-nav">
+            <a class="item-nav" href="#eventos">
+                <p>EVENTOS</p>
+            </a>
+        </div>
+        <div class="elementos-nav">
+            <a class="item-nav" href="#sobre">
+                <p>SOBRE NÓS</p>
+            </a>
+        </div>
+    </nav>
+
+    <!-- SEÇÃO HOME -->
+    <section id="home">
+        <header id="home-header">
+            <h1>BENVENUTO A <br> CASA NOSTRA!</h1>
+            <p id="paragrafo-header">No nosso restaurante, qualidade e satisfação do cliente andam juntas. Venha saborear o melhor da autêntica culinária italiana</p>
+            <a class="btn-destaque" href="https://wa.me/557791884825?text=Olá%2C%20gostaria%20de%20fazer%20uma%20reserva" target="_blank">FAÇA SUA RESERVA</a>
+        </header>
+        <main>
+            <section id="section-home">
+                <div class="div-section" id="div-section-text">
+                    <h2>BENVENUTO A CASA NOSTRA!</h2>
+                    <p>No nosso restaurante, qualidade e satisfação do cliente andam juntas. Venha saborear o melhor da autêntica culinária italiana.</p>
+                    <br>
+                    <p>Os melhores ingredientes são selecionados para transformar cada prato em uma verdadeira celebração da alta gastronomia italiana.</p>
+                    <a class="btn-destaque" href="#sobre">SOBRE NÓS</a>
+                </div>
+                <div class="div-section" id="div-section-img">
+                    <img id="img-cozinheiro-extended" src="./src/assets/img/cozinheiro-temperando-extended.png" alt="Cozinheiro Temperando">
+                    <img id="img-cozinheiro" src="./src/assets/img/cozinheiro-temperando.png" alt="Cozinheiro Temperando">
+                </div>
+            </section>
+        </main>
+    </section>
+
+    <div class="div-divisao-sections">
+        SOBRE NÓS
+    </div>
+
+    <!-- SEÇÃO SOBRE NÓS -->
+    <section id="sobre">
+        <header id="sobre-header">
+            <h1>SOBRE NÓS</h1>
+        </header>
+        <main>
+            <div class="caixa-texto-sobrenós">
+                <p class="texto">Fundado em 1998, o Farina Ristorante nasceu do desejo de compartilhar a vera cucina italiana com paixão e tradição. Nosso nome, Farina (farinha), representa a base de tantas receitas que atravessam gerações e encantam paladares pelo mundo.</p>
+                <p class="texto">Ao longo dos anos, o Farina Ristorante se tornou referência em cucina autentica, unindo ingredientes di altissima qualità com o cuidado artesanal no preparo de cada prato. Nossas especialidades incluem massas frescas feitas diariamente, como o clássico Tagliatelle al Ragù que por anos tem sido o carro chefe do nosso Ristorante, a saborosa Lasagna alla Bolognese e o delicado Ravioli di Ricotta e Spinaci. Também servimos a tradicional Pizza Napoletana assada em forno à lenha e sobremesas como o inesquecível Tiramisù della Casa.</p>
+                <p class="texto">Mais do que um restaurante, o Farina Ristorante é um espaço de convivialità e celebração, onde cada cliente é recebido como parte da nostra famiglia italiana.</p>
+            </div>
+            <div class="caixa-foto">
+                <div class="foto-taylor">
+                    <img src="./src/assets/img/sobrenós-taylor.jpeg" alt="foto-taylor">
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <div class="div-divisao-sections">
+        CARDÁPIO
+    </div>
+
+    <!-- SEÇÃO CARDÁPIO -->
+    <section id="cardapio">
+        <header id="cardapio-header">
+            <h1>CARDÁPIO</h1>
+        </header>
+        <main>
+            <div class="container-principal"> 
+                <div class="secao-navegacao"> 
+                    <div class="botões-cardápio">
+                        <h3>Farina Ristorante</h3>
+                        <a class="cardápio">Cardápio</a>
+                        <a href="#div-dodia" class="promoção">Pratos do dia</a>
+                    </div>
+                    <div class="botões-categorias">
+                        <a href="#div-antipasti" class="pasta">Antipasti</a>
+                        <a href="#div-pasta" class="pasta">Pasta</a>
+                        <a href="#div-dolci" class="pasta">Dolci</a>
+                    </div>
+                </div>
+                
+                <section id="div-antipasti" class="secao-prato">
+                    <div class="cabecalho-faixa-cinza">
+                        <h2 class="texto">Antipasti</h2>
+                        <p>(Entradas)</p>
+                    </div>
+                    <div class="aba-Antipasti"> 
+                        <div class="menu-grid">
+                            <div class="Focaccia item-menu"> 
+                                <div class="conteudo">
+                                    <h2>Focaccia</h2>
+                                    <p class="descricao">Focaccia de alecrim, tomatinhos assados, molho pesto e molho de tomate</p>
+                                    <p class="tag">🥗 Vegetariano</p>
+                                    <p class="preco">R$ 32,00</p>
+                                </div>
+                                <img src="./src/assets/img/foto-Focaccia.png" alt="foto-Focaccia">
+                            </div>
+                            <div class="Arancini-Romano item-menu">
+                                <div class="conteudo">
+                                    <h2>Arancini Romano</h2>
+                                    <p class="descricao">O clássico bolinho de risoto italiano recheado com carne (fraldinha) desfiada</p>
+                                    <p class="preço">R$ 45,00</p>
+                                </div>
+                                <img src="./src/assets/img/Aranci Romano.png" alt="foto-Arancini">
+                            </div>
+                            <div class="Burrata item-menu"> 
+                                <div class="conteudo">
+                                    <h2>Burrata</h2>
+                                    <p class="descricao">Pappa al pomodoro, típico molho toscano preparado com tomates frescos e pão raffermo, acompanhado de burrata Almeida Prado e tostata de pão</p>
+                                    <p class="tag">🥗 Vegetariano</p>
+                                    <p class="preco">R$ 85,00</p>
+                                </div>
+                                <img src="./src/assets/img/Burrata.png" alt="foto-Burrata">
+                            </div>
+                            <div class="Polpettini item-menu">
+                                <div class="conteudo">
+                                    <h2>Polpettini</h2>
+                                    <p class="descricao">Tradicionais bolinhos de blend bovino, recheados de muçarela de búfala, nostro molho pomodoro e basílico</p>
+                                    <p class="preço">R$ 65,00</p>
+                                </div>
+                                <img src="./src/assets/img/Polpettini.png" alt="foto-Polpettini">
+                            </div>
+                        </div>  
+                    </div>
+                </section>
+                
+                <section id="div-pasta" class="secao-prato">
+                    <div class="cabecalho-faixa-cinza">
+                        <h2 class="texto">Pasta</h2>
+                        <p>(massas da casa)</p>
+                    </div>
+                    <div class="aba-Pasta">
+                        <div class="menu-grid">
+                            <div class="Lasagna item-menu"> 
+                                <div class="conteudo">
+                                    <h2>Lasagna alla Bolognese</h2>
+                                    <p class="descricao">Lasagna alla Bolognese, camadas de massa fresca intercaladas com ragù à moda de Bolonha, bechamel cremoso e Parmigiano Reggiano gratinado ao forno.</p>
+                                    <p class="preco">R$ 75,00</p>
+                                </div>
+                                <img src="./src/assets/img/foto-lasangna.png" alt="foto-lasangna">
+                            </div>
+                            <div class="Tagliatelle item-menu">
+                                <div class="conteudo">
+                                    <h2>Tagliatelle al Ragù</h2>
+                                    <p class="descricao">Tagliatelle al Ragù, massa fresca artesanal servida com ragù clássico de carnes lentamente cozidas, enriquecido com ervas aromáticas e finalizado com Parmigiano Reggiano</p>
+                                    <p class="preço">R$ 65,00</p>
+                                </div>
+                                <img src="./src/assets/img/tagliatelle.png" alt="foto-Tagliatelle">
+                            </div>
+                            <div class="Pizza item-menu"> 
+                                <div class="conteudo">
+                                    <h2>Pizza Napoletana</h2>
+                                    <p class="descricao">Pizza Napoletana, massa de fermentação lenta assada em forno a lenha, coberta com molho de tomate San Marzano, mozzarella di bufala e folhas frescas de manjericão.</p>
+                                    <p class="preco">R$ 135,00</p>
+                                </div>
+                                <img src="./src/assets/img/pizza.png" alt="foto-Pizza">
+                            </div>
+                            <div class="Ravioli item-menu">
+                                <div class="conteudo">
+                                    <h2>Ravioli di Ricotta</h2>
+                                    <p class="descricao">Ravioli di Ricotta, delicados ravioli de massa fresca recheados com ricotta cremosa e ervas, servidos com manteiga de sálvia e finalizados com Parmigiano Reggiano</p>
+                                    <p class="preço">R$ 85,00</p>
+                                </div>
+                                <img src="./src/assets/img/ravioli.png" alt="foto-Ravioli">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="div-dolci" class="secao-prato">
+                    <div class="cabecalho-faixa-cinza">
+                        <h2 class="texto">Dolci</h2>
+                        <p>(Sobremesa)</p>
+                    </div>
+                    <div class="aba-Dolci">
+                        <div class="menu-grid">
+                            <div class="Tiramisù item-menu"> 
+                                <div class="conteudo">
+                                    <h2>Tiramisù della casa</h2>
+                                    <p class="descricao">Tiramisù, clássico italiano preparado com camadas de biscoito embebido em café, creme de mascarpone e leve finalização de cacau em pó</p>
+                                    <p class="preco">R$ 32,00</p>
+                                </div>
+                                <img src="./src/assets/img/tiramisú.png" alt="foto-Tiramisù">
+                            </div>
+                            <div class="Pistachio item-menu">
+                                <div class="conteudo">
+                                    <h2>Pistachio</h2>
+                                    <p class="descricao">Cremoso de chocolate belga com avelã, nibs de cacau e calda de pistachio</p>
+                                    <p class="preço">R$ 32,00</p>
+                                </div>
+                                <img src="./src/assets/img/pistachio.png" alt="foto-Pistachio">
+                            </div>
+                        </div>  
+                    </div>
+                </section>
+
+                <section id="div-dodia" class="secao-prato">
+                    <div class="cabecalho-faixa-cinza">
+                        <h2 class="texto">Pratos do dia</h2>
+                        <p>(promoções)</p>
+                    </div>
+                    <div class="aba-dodia">
+                        <div class="menu-grid">
+                            <div class="Polpettini item-menu">
+                                <div class="conteudo">
+                                    <h2>Polpettini</h2>
+                                    <p class="descricao">Tradicionais bolinhos de blend bovino, recheados de muçarela de búfala, nostro molho pomodoro e basílico</p>
+                                    <p class="preço">R$ 45,00</p>
+                                </div>
+                                <img src="./src/assets/img/Polpettini.png" alt="foto-Polpettini">
+                            </div>
+                            <div class="Pizza item-menu"> 
+                                <div class="conteudo">
+                                    <h2>Pizza Napoletana</h2>
+                                    <p class="descricao">Pizza Napoletana, massa de fermentação lenta assada em forno a lenha, coberta com molho de tomate San Marzano, mozzarella di bufala e folhas frescas de manjericão.</p>
+                                    <p class="preco">R$ 100,00</p>
+                                </div>
+                                <img src="./src/assets/img/pizza.png" alt="foto-Pizza">
+                            </div>
+                            <div class="Pistachio item-menu">
+                                <div class="conteudo">
+                                    <h2>Pistachio</h2>
+                                    <p class="descricao">Cremoso de chocolate belga com avelã, nibs de cacau e calda de pistachio</p>
+                                    <p class="preço">R$ 25,00</p>
+                                </div>
+                                <img src="./src/assets/img/pistachio.png" alt="foto-Pistachio">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </section>
+
+    <div class="div-divisao-sections">
+        EVENTOS
+    </div>
+
+    <!-- SEÇÃO EVENTOS -->
+    <section id="eventos">
+        <header id="eventos-header">
+            <h1>EVENTOS</h1>
+        </header>
+        <main>
+            <section id="section-eventos">
+                <div id="div-limitadora-tamanho">
+                    <article id="article-aniversario" class="eventos">
+                        <img src="./src/assets/img/aniversarios.png" alt="Aniversários">
+                        <h2>ANIVERSÁRIOS</h2>
+                        <a href="./orcamento.html" class="btn-orcamento">ORÇAMENTO</a>
+                    </article>
+                    <article id="article-confraternizacao" class="eventos">
+                        <img src="./src/assets/img/confraternizacoes.png" alt="Confraternizações">
+                        <h2>CONFRATERNIZAÇÕES</h2>
+                        <a href="./orcamento.html" class="btn-orcamento">ORÇAMENTO</a>
+                    </article>
+                    <article id="article-casamento" class="eventos">
+                        <img src="./src/assets/img/casamentos.png" alt="Casamentos">
+                        <h2>CASAMENTOS</h2>
+                        <a href="./orcamento.html" class="btn-orcamento">ORÇAMENTO</a>
+                    </article>
+                    <article id="article-evento-corporativo" class="eventos">
+                        <img src="./src/assets/img/eventos-c.png" alt="Eventos Corporativos">
+                        <h2>EVENTOS CORPORATIVOS</h2>
+                        <a href="./orcamento.html" class="btn-orcamento">ORÇAMENTO</a>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div id="fixacao">
+            <div class="caixa-texto-footer">
+                <p class="titulo">ENDEREÇO:</p>
+                <p class="texto">R. Antônio Marcos de Moraes, 105, Xavier</p>
+                <p class="texto">Urandi/BA</p>
+            </div>
+            
+            <div class="linha"></div>
+            <div class="caixa-texto-footer">
+                <p class="titulo">HORÁRIOS:</p>
+                <p class="texto">TER-QUI: 18h às 23h</p>
+                <p class="texto">SEX: 12h às 15:30h e 18h às 23h</p>
+                <p class="texto">SÁB: 12h às 16:30h e 18h às 23h</p>
+                <p class="texto">DOM: 11:30h às 16h</p>
+            </div>
+            <div class="linha"></div>
+            <div class="caixa-texto-footer">
+                <p class="titulo">TELEFONE:</p>
+                <p class="texto">(77) 9188-4825</p>
+            </div>
+        </div>
+        <img src="./src/assets/img/logo-sembg-w.png" alt="Logo do restaurante" id="logo">
+        <div id="redes-sociais">
+            <img src="./src/assets/img/icone-instagram.png" alt="Instagram">
+            <img src="./src/assets/img/icone-whatsapp.png" alt="Whatsapp">
+            <img src="./src/assets/img/icone-facebook.png" alt="Facebook">
+        </div>
+        <p>CNPJ: 75.910.277/0001-50</p>
+    </footer>
+
+</body>
+</html>

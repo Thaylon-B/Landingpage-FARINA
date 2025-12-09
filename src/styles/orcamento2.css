@@ -1,0 +1,135 @@
+main {
+    height: auto;
+    padding: 6% 0;
+}
+
+section {
+    display: flex;
+}
+
+#div-text {
+    width: 60%;
+
+    font-family: var(--titulos);
+    text-align: center;
+    font-size: clamp(1.3em, 2.5vw, 10rem);
+    color: var(--cor-secundaria);
+}
+
+#div-form {
+    width: 40%;
+}
+
+div#icones {
+    display: flex;
+    align-items: center;
+    width: 80%;
+
+    margin-bottom: 4%;
+}
+
+div.icon-dados {
+    text-align: center;
+    width: 35%;
+}
+
+img {
+    width: 80px;
+}
+
+div#traco {
+    height: 1px;
+    width: 40%;
+
+    background-color: black;
+}
+
+#formulario {
+    width: 90%;
+    margin: auto;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    width: 70%;
+    margin-bottom: 3%;
+    padding: 1%;
+
+    border-radius: 5px;
+    border: 1px solid #847C7C;
+}
+
+.btn {
+    width: 70%;
+    height: 15%;
+    padding: 1%;
+
+    font-family: var(--destaque);
+    font-size: clamp(1em, 1.5vw, 10em);
+    text-align: center;
+
+    justify-content: center;
+    align-items: center;
+}
+
+#btn-voltar {
+    background-color: var(--cor-principal);
+    color: var(--cor-secundaria);
+    border: 2px solid var(--cor-secundaria);
+
+    margin-bottom: 10px;
+}
+
+#btn-solicitar {
+    background-color: var(--cor-destaque);
+    color: var(--cor-principal);
+}
+
+
+@media (max-width: 1120px) {
+    section {
+        flex-direction: column;
+    }
+
+    div#div-text {
+        width: 100%;
+    }
+
+    div#div-form {
+        width: 100%;
+    }
+
+    div#icones {
+        width: 100%;
+    }
+
+    form {
+        flex-direction: column;
+        margin: auto;
+        align-items: center;
+    }
+
+    #div-form {
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+    }    
+
+    #formulario {
+        width: 80%;
+        margin: auto;
+    }
+
+    label {
+        align-items: flex-start;
+    }
+
+    input {
+        width: 70%;
+    }
+}

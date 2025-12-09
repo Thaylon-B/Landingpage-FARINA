@@ -1,0 +1,34 @@
+@font-face {
+    font-family: "lalezar";
+    src: url("../assets/font/Lalezar/Lalezar-Regular.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "lateef";
+    src: url("../assets/font/Lateef/Lateef-Regular.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "libre bodoni";
+    src: url("../assets/font/Libre_Bodoni/LibreBodoni-Regular.ttf") format('truetype');
+}
+
+:root {
+    --destaque: "lalezar";
+    --texto: "lateef";
+    --titulos: "libre bodoni";
+
+    --cor-principal: #FFF;
+    --cor-secundaria: #005926;
+    --cor-destaque: #C8102E;
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
